@@ -1,1 +1,1 @@
-pip install pycoingecko
+pip3 install pycoingecko
