@@ -23,7 +23,7 @@ class HistoricalData:
         files = self.get_files()
         for file in files:
             logging.info(f"Reading files -> {file}")
-            data_frame = pd.read_csv(file, index_col='Date',parse_dates=True,infer_datetime_format=True)
+            data_frame = pd.read_csv(file)
             frames.append(data_frame)
         result = pd.concat(frames)
         return result
