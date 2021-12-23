@@ -58,8 +58,8 @@ class ElasticCacheAnalysis:
     
     def process_data(self):
         clusters = [{
-            'ClusterId': 'prc1ftfmvgthpq81',
-            'Endpoint':'prc1ftfmvgthpq81-ro.6h6csz.ng.0001.euw1.cache.amazonaws.com',
+            'ClusterId': 'cac105dwt7ei69fh',
+            'Endpoint':'cac105dwt7ei69fh-ro.4j0ura.ng.0001.euw1.cache.amazonaws.com',
             'Port':'6379'
         },{
             'ClusterId': 'prc1xhmmagnsm9nr',
