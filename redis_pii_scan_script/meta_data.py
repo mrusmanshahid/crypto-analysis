@@ -69,7 +69,7 @@ class ElasticCacheAnalysis:
             'ClusterId': 'prc29thwdnqb2c7',
             'Endpoint':'prc29thwdnqb2c7-ro.6h6csz.ng.0001.euw1.cache.amazonaws.com',
             'Port':'6379'
-        } #self.get_all_endpoints()
+        }] #self.get_all_endpoints()
         logging.info(f"Clusters -> {clusters}")
         logging.info("Starting gathering data from Redis tables")
         for cluster in clusters:
