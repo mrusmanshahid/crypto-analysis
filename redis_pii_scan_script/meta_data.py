@@ -57,19 +57,7 @@ class ElasticCacheAnalysis:
         return data
     
     def process_data(self):
-        clusters = [{
-            'ClusterId': 'cac105dwt7ei69fh',
-            'Endpoint':'cac105dwt7ei69fh-ro.4j0ura.ng.0001.euw1.cache.amazonaws.com',
-            'Port':'6379'
-        },{
-            'ClusterId': 'prc1xhmmagnsm9nr',
-            'Endpoint':'prc1xhmmagnsm9nr-ro.6h6csz.ng.0001.euw1.cache.amazonaws.com',
-            'Port':'6379'
-        },{
-            'ClusterId': 'prc29thwdnqb2c7',
-            'Endpoint':'prc29thwdnqb2c7-ro.6h6csz.ng.0001.euw1.cache.amazonaws.com',
-            'Port':'6379'
-        }] #self.get_all_endpoints()
+        clusters = self.get_all_endpoints()
         logging.info(f"Clusters -> {clusters}")
         logging.info("Starting gathering data from Redis tables")
         for cluster in clusters:
