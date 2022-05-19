@@ -10,9 +10,9 @@ class HistoricalData:
     def get_files(self):
         logging.info("Loading files for historical data")
         historical_files = []
-        for file in os.listdir("resources"):
+        for file in os.listdir("lstm/resources"):
             if file.endswith(".csv"):
-                path = os.path.join("resources", file)
+                path = os.path.join("lstm/resources", file)
                 logging.info(f"loading -> {path}")
                 historical_files.append(path)
         return historical_files

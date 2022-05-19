@@ -104,5 +104,19 @@ class NeuralNetwork:
 
 if __name__ == "__main__":
     neural_network = NeuralNetwork()
-    predicted, actual = neural_network.predict_by_coin('ETH')
-    Plot().plot_line(actual,predicted)
+    coins = [
+        'BTC', 'AAVE', 'BNB', 
+        'ADA', 'LINK', 'ATOM', 
+        'Coin', 'DOGE', 'EOS', 
+        'ETH', 'MIOTA', 'LTC', 
+        'XMR', 'XEM', 'DOT', 
+        'SOL', 'USDT', 'TRX', 
+        'XLM', 'XRP', 'WBTC', 
+        'UNI'
+    ]
+
+    for coin in coins:        
+        predicted, actual = neural_network.predict_by_coin('ETH')
+        #Plot().plot_line(actual,predicted)
+        Plot().save_fig(actual,predicted,coin)
+
