@@ -18,6 +18,20 @@ class NeuralNetwork:
     def __init__(self):
         pass
 
+    def get_transformed_data_by_symbol(self, symbol):
+        data = HistoricalData().get_historical_data()
+        data = data.loc[data['Symbol'] == symbol]
+        y = data['Close'].values
+        del data['Close']
+        del data['Name']
+        del data['Symbol']
+        x = data
+        scaler = StandardScaler()
+        x = scaler.fit_transform(x)
+        y = scaler.fit_transform(y.reshape(-1,1))
+        x, y = self.lstm_data_transform(x, y, num_steps=7)
+        x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3)
+        return x_train,y_train,x_test,y_test
 
     def get_transformed_data(self):
         data = HistoricalData().get_historical_data()
@@ -79,14 +93,16 @@ class NeuralNetwork:
         y_array = np.array(y)
         return x_array, y_array
 
+    def build_lstm(self):
+        x_train, y_train, x_test, y_test = neural_network.get_transformed_data()
+        self.model_training(x_train, y_train)
+
+    def predict_by_coin(self, coin):
+        x_train, y_train, x_test, y_test = self.get_transformed_data_by_symbol(coin)
+        y_predicted = self.model_prediction('lstm/lstm_neural_network.h5',x_test)
+        return y_predicted, y_test
 
 if __name__ == "__main__":
     neural_network = NeuralNetwork()
-    x_train, y_train, x_test, y_test = neural_network.get_transformed_data()
-    neural_network.model_training(x_train, y_train)
-    y_predicted = neural_network.model_prediction('./lstm_neural_network.h5',x_test)
-    print(y_train.shape)
-    print(y_predicted.shape)
-
-    Plot().plot_line(y_test,y_predicted)
-    #Plot().plot_confusion_matrix(y_test, y_predicted)
+    predicted, actual = neural_network.predict_by_coin('ETH')
+    Plot().plot_line(actual,predicted)
